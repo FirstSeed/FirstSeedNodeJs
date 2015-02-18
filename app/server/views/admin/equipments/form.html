@@ -1,0 +1,87 @@
+{% extends "../../layouts/main.html" %}
+
+{% block title %} Crear Equipo {% endblock %}
+
+{% block feet %}
+	<!-- external scripts -->
+	<script type='text/javascript' src="/views/admin/equipments/js/create.min.js"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="header"></div>
+      <div id="details"></div>
+    </div>
+  </div>
+
+	<!-- underscore templates -->
+	<script type="text/template" id="tmpl-header">
+		<div class="page-header">
+			<h1>
+				<a href="/admin/equipments/">Equipos</a> / Crear Equipo
+			</h1>
+		</div>
+	</script>
+
+	<script type="text/template" id="tmpl-details">
+		<fieldset>
+			<legend>Diligenciar</legend>
+			<div class="alerts">
+				<% _.each(errors, function(err) { %>
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" data-dismiss="alert" class="close">&times;</button>
+						<%- err %>
+					</div>
+				<% }); %>
+    		<% if (success) { %>
+					<div class="alert alert-info alert-dismissable">
+						<button type="button" data-dismiss="alert" class="close">&times;</button>
+							Equipo ha sido creado.
+						</div>
+					<% } %>
+			</div>
+
+			<div class='<%- errfor.name ? "has-error" : "" %> form-group' >
+				<label>Nombre: </label>
+				<input type="text" name="name" placeholder="nombre" value!="<%- name %>" class="form-control">
+				<span class="help-block"><%- errfor.name %></span>
+			</div>
+			<div class!='form-group <%- errfor.area ? "has-error" : "" %>'>
+				<label>Área: </label>
+				<select id="area" name="area" class="form-control"></select>
+				<span class="help-block"><%- errfor.area %></span>
+			</div>
+			<div class='form-group <%- errfor.room ? "has-error" : "" %>'>
+				<label>Habitación: </label>
+				<select id="room" name="room" class="form-control"></select>
+				<span class="help-block"><%- errfor.room %></span>
+			</div>
+			<div class='form-group <%- errfor.bed ? "has-error" : "" %>'>
+				<label>Cama: </label>
+				<select id="bed" name="bed" class="form-control"></select>
+				<span class="help-block"><%- errfor.bed %></span>
+			</div>
+			<div class='form-group <%- errfor.nurse ? "has-error" : "" %>'>
+				<label>Enfermera: </label>
+				<input type="text" class="form-control" name="nurse" placeholder="enfermera" value!='<%- nurse %>' >
+				<span class="help-block"><%- errfor.nurse %></span>
+			</div>
+			<div class='form-group <%- errfor._id ? "has-error" : "" %>'>
+				<label>Id: </label>
+				<input type="text" class="form-control" name="_id" placeholder="id" value!='<%- _id %>' >
+				<span class="help-block"><%- errfor._id %></span>
+			</div>
+		</fieldset>
+		<div class="form-group">
+			<button type="button" class="btn btn-primary btn-add">Crear</button>
+		</div>
+  </script>
+
+	<!-- Received data -->
+	<script type="text/template" id="data-results">
+		{% autoescape false %}
+			[[data.beds]]
+		{% endautoescape %}
+	</script>
+{% endblock %}

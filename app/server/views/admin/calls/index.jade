@@ -1,0 +1,41 @@
+//extends ../../../layouts/admin
+
+block head
+  title Calls
+
+block neck
+  link(rel='stylesheet', href='/views/admin/calls/less/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/admin/calls/js/index.min.js?#{cacheBreaker}')
+
+block body
+  div.page-header
+    h1 Calls reports
+
+  div
+    form(id="callform" action="/admin/calls/create-report/" method="POST")
+      lists.section
+        article#areas_list.list
+          #areas
+        article#rooms_list.list
+          #rooms
+        article#beds_list.list
+          #beds
+        div#consulta.consulta
+
+
+  // Templates
+  //script(type='text/template', id='data-results') !{area}
+
+  script(type="text/template", id="tmpl-areas")
+    select#area.select_menu(name="area" form="callform" size="11")
+
+  script(type="text/template", id="tmpl-rooms")
+    select#room.select_menu(name="room" form="callform" size="11")
+
+  script(type="text/template", id="tmpl-beds")
+    select#bed.select_menu(name="bed" form="callform" size="11")
+
+  script(type='text/template', id='tmpl-consult')
+    button.btn.btn-primary.btn-details(type='submit') Consultar

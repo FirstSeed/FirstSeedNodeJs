@@ -1,0 +1,75 @@
+{% extends '../../layouts/main.html' %}
+
+{% block title %} Calls {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="/views/admin/calls/less/dataTables.min.css"/>
+{% endblock %}
+
+{% block feet %}
+ <script type='text/javascript' src="/views/admin/calls/js/jquery.dataTables.js"> </script>
+ <script type='text/javascript' src="/views/admin/calls/js/dataTables.bootstrap.js"> </script>
+
+ <script type='text/javascript' src="/views/admin/calls/js/calls.min.js"> </script>
+
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="header">
+        <div class="page-header">
+          <h1>Llamados</h1>
+        </div>
+      </div>
+      <div id="results-table"></div>
+    </div>
+  </div>
+
+  <!-- Templates -->
+  <script type="text/template" id="tmpl-results-table">
+    <table id="calls-results" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Inicio Llamado</th>
+          <th>Fin Llamado</th>
+          <th>Duración (s)</th>
+          <th>Estado</th>
+          <th>Equipo</th>
+          <th>Área</th>
+          <th>Habitación</th>
+          <th>Cama</th>
+        </tr>
+      </thead>
+      <tbody id="results-rows"></tbody>
+    </table>
+  </script>
+
+  <script type="text/template" id="tmpl-results-row">
+    <td><%= code %></td>
+    <td><%= initDate %></td>
+    <td><%= endDate %></td>
+    <td><%= time %></td>
+    <td><%= attended %></td>
+    <td><%= equipment %></td>
+    <td><%= equipmentarea %></td>
+    <td><%= equipmentroom %></td>
+    <td><%= equipmentbed %></td>
+
+  </script>
+
+  <script type="text/template" id="tmpl-results-empty-row">
+    <tr>
+      <td colspan="5">no documents matched</td>
+    </tr>
+  </script>
+
+  <!-- Received data -->
+  <script type="text/template" id="data-results">
+    {% autoescape false %}
+      [[data.results]]
+    {% endautoescape %}
+  </script>
+
+{% endblock %}

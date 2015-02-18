@@ -1,0 +1,62 @@
+{% extends '../../layouts/main.html' %}
+
+{% block title %} Reporte {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/vendor/bootstrap3-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
+  <link rel="stylesheet" href="/views/admin/calls/less/reports.min.css"/>
+{% endblock %}
+
+{% block feet %}
+  <script src="/vendor/bootstrap3-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="/views/admin/calls/js/reports.min.js"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <h1>Detalle de los llamados</h1>
+  </div>
+  <div class="row">
+    <section class="col-sm-12 main_content small medium large">
+      <nav class="menu">
+        <ul class="list center_block wrap">
+          <li class="item"><a href="#">Llamados</a></li>
+          <li class="item"><a href="#">Alarmas</a></li>
+        </ul>
+      </nav>
+      <div class="report">
+        <div class="tag"><span>Hospital Santa Sofía</span></div>
+        <div class="tag"><span>[[place.nameArea.name]] - [[place.nameRoom.name]] - [[place.nameBed.name]]</span></div>
+        <div class="row">
+          <div class="center-block">
+            <form id="date_form" name="date_form" action="/admin/calls/excel/[[place.nameEquipments[0].id]]"  method="POST">
+              <div style="height:60px;" class="col-sm-12 col-centered">
+                <div class="col-centered">
+                  <div id="initDate" class="input-group date"><input type="text" id="init_date" name="init_date" class="form-control"/><span class="input-group-addon input-nx"><span class="glyphicon glyphicon-calendar"></span></span></div>
+                </div>
+                <div class="col-centered">
+                  <div id="endDate" class="input-group date"><input type="text" id="end_date" name="end_date" class="form-control"/><span class="input-group-addon input-nx"><span class="glyphicon glyphicon-calendar"></span></span></div>
+                </div>
+                <div class="col-centered"><button type="button" id="gen_report" class="btn btn-primary">Generar Reporte</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="board_report">
+          <div class="report_day">
+            <h3>Resumen General</h3>
+          </div>
+          <div class="report_data">
+            <ul class="lists">
+              <li class="item border-bottom"><span>[[sigma.countcallrequest]] Llamados solicitados</span></li>
+              <li class="item border-bottom"><span>[[sigma.countcallattended]] Llamados atendidos</span></li>
+              <li class="item border-bottom"><span>[[sigma.average]] Min Tiempo Promedio</span></li>
+              <li class="item border-bottom"><span>[[sigma.maxTime]] Tiempo Maximo</span></li>
+              <li class="item border-bottom"><span>[[sigma.minTime]] Tiempo Minimo</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "../../layouts/main.html" %}
+
+{% block title %} Camas {% endblock %}
+
+{% block feet %}
+  <!-- external scripts -->
+  <script type='text/javascript' src="/views/admin/beds/js/index.min.js"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="header"></div>
+      <div id="filters"></div>
+      <div id="results-table"></div>
+      <div id="results-paging"></div>
+    </div>
+  </div>
+
+  <!-- underscore templates -->
+  <script type="text/template" id="tmpl-header">
+    <div class="page-header">
+      <div class="inline pull-right">
+        <a href="/admin/beds/create/bed/">
+          <button type="button" class="btn btn-primary">Nueva Cama</button></a>
+      </div>
+      <h1>Camas</h1>
+    </div>
+  </script>
+
+  <script type="text/template" id="tmpl-filters">
+    <form class="filters">
+      <div class="row">
+        <div class="col-sm-3">
+          <label>Buscar Nombre</label>
+          <input name="name" type="text" class="form-control">
+        </div>
+        <div class="col-sm-3">
+          <label>Ordenar Por</label>
+          <select name="sort" class="form-control">
+            <option value="_id">_id &#9650;</option>
+            <option value="-_id">_id &#9660;</option>
+            <option value="name">name &#9650;</option>
+            <option value="-name">name &#9660;</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <label>Límite</label>
+            <select name="limit" class="form-control">
+              <option value="10">10 items</option>
+              <option value="20" selected="selected">20 items</option>
+              <option value="50">50 items</option>
+              <option value="100">100 items</option>
+            </select>
+        </div>
+      </div>
+    </form>
+  </script>
+
+  <script type="text/template" id="tmpl-results-table">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-sm-1"></th>
+          <th class="col-sm-2">nombre</th>
+          <th class="col-sm-3">habitación</th>
+          <th class="col-sm-5">área</th>
+          <th class="col-sm-1">_id</th>
+        </tr>
+      </thead>
+      <tbody id="results-rows"></tbody>
+    </table>
+  </script>
+
+  <script type="text/template" id="tmpl-results-row">
+    <td>
+      <input type="button" value="Edit" class="btn btn-default btn-sm btn-details">
+    </td>
+    <td>
+      <%- name %>
+    </td>
+    <td>
+      <%- room %>
+    </td>
+    <td>
+      <%- area %>
+    </td>
+    <td class="nowrap">
+      <%= _id %>
+    </td>
+  </script>
+
+  <script type="text/template" id="tmpl-results-empty-row">
+    <tr>
+      <td colspan="3">
+        No hay camas registradas
+      </td>
+    </tr>
+  </script>
+
+  <script type="text/template" id="tmpl-results-paging">
+    <div class="well">
+      <div class="btn-group pull-left">
+        <button disabled class="btn btn-default">Page <%= pages.current %> of <%= pages.total %></button>
+        <button disabled class="btn btn-default">Rows <%= items.begin %> - <%= items.end %> of <%= items.total %></button>
+      </div>
+      <div class="btn-group pull-right">
+        <button data-page="<%= pages.prev %>" class="btn btn-default btn-page btn-prev">Prev</button>
+        <button data-page="<%= pages.next %>" class="btn btn-default btn-page btn-next"> Next</button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </script>
+
+  <!-- Received data -->
+  <script type="text/template" id="data-results">
+    {% autoescape false %}
+      [[data.results]]
+    {% endautoescape %}
+  </script>
+
+{% endblock %}

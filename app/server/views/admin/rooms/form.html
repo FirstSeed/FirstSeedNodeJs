@@ -1,0 +1,66 @@
+{% extends "../../layouts/main.html" %}
+
+{% block title %} Crear Área {% endblock %}
+
+{% block feet %}
+	<!-- external scripts -->
+	<script type='text/javascript' src="/views/admin/rooms/js/create.min.js"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="header"></div>
+      <div id="details"></div>
+    </div>
+  </div>
+
+	<!-- underscore templates -->
+	<script type="text/template" id="tmpl-header">
+		<div class="page-header">
+			<h1>
+				<a href="/admin/rooms/">Habitaciones</a> / Crear Habitación
+			</h1>
+		</div>
+	</script>
+
+	<script type="text/template" id="tmpl-details">
+		<fieldset>
+			<legend>Diligenciar</legend>
+			<div class="alerts">
+				<% _.each(errors, function(err) { %>
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" data-dismiss="alert" class="close">&times;</button>
+						<%- err %>
+					</div>
+				<% }); %>
+    		<% if (success) { %>
+					<div class="alert alert-info alert-dismissable">
+						<button type="button" data-dismiss="alert" class="close">&times;</button>
+							Habitación ha sido creada.
+						</div>
+					<% } %>
+			</div>
+
+			<div class!='form-group <%- errfor.name ? "has-error" : "" %>'>
+				<label>Nombre: </label>
+				<input type="text" name="name" placeholder="nombre" value!="<%- name %>" class="form-control">
+				<span class="help-block"><%- errfor.name %></span>
+			</div>
+			<div class!='form-group <%- errfor.area ? "has-error" : "" %>'>
+				<label>Área: </label>
+				<select name="area" class="form-control">
+					{% for area in data.areas %}
+  					<option value="[[ area.id ]]">
+  						[[ area.name ]]
+  					</option>
+					{% endfor %}
+				</select>
+				<span class="help-block"><%- errfor.name %></span>
+			</div>
+		</fieldset>
+		<div class="form-group">
+			<button type="button" class="btn btn-primary btn-add">Crear</button>
+		</div>
+  </script>
+{% endblock %}

@@ -1,0 +1,59 @@
+doctype html
+html
+  head
+    block head
+      title #{title}
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/layouts/core.min.css')
+    link(rel='stylesheet', href='/layouts/admin.min.css')
+    block neck
+  body
+    div.navbar.navbar-inverse.navbar-fixed-top
+      div.container
+        div.navbar-header
+          a.navbar-brand(href='/')
+            img.navbar-logo(src='/media/logo-salud-64x64.png')
+            span.navbar-brand-label #{projectName}
+          button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        div.navbar-collapse.my-navbar-collapse.collapse
+
+          form.navbar-form.pull-right#_search
+
+    div.page
+      div.container
+        block body
+
+    div.footer
+      div.container
+        div.inner
+          span.copyright.pull-right
+            |&#169; #{copyrightYear} #{copyrightName}
+          ul.links
+            li: a(href='/') Home
+          div.clearfix
+
+    div.ajax-spinner
+      img(src='/media/ajax-pulse.gif')
+
+    script(type='text/template', id='tmpl-_search')
+      div.dropdown
+        input.form-control(name='_search', type='text', placeholder='search', tab-index='1')
+        ul#_search-results-rows.dropdown-menu
+    script(type='text/template', id='tmpl-_search-results-row')
+      |<% if (type && type == 'header') { %>
+      |<%- name %>
+      |<% } else { %>
+      a(href!='<%= url %>') <%- name %>
+      |<% } %>
+    script(type='text/template', id='tmpl-_search-results-empty-row')
+      li.dropdown-header no docs matched
+
+    //if lte IE 9
+    script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
+    script(src='/layouts/core.min.js?#{cacheBreaker}')
+    script(src='/layouts/admin.min.js?#{cacheBreaker}')
+
+    block feet

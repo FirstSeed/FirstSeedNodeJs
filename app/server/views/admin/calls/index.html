@@ -1,0 +1,56 @@
+{% extends '../../layouts/main.html' %}
+
+{% block title %} Calls {% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/views/admin/calls/less/index.min.css"/>
+{% endblock %}
+
+{% block feet %}
+  <script src="/views/admin/calls/js/index.min.js?undefined"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <h1>Calls reports</h1>
+  </div>
+  <div>
+    <form id="callform" action="/admin/calls/create-report/" method="POST">
+      <lists class="section">
+        <article id="areas_list" class="list">
+          <div id="areas"></div>
+        </article>
+        <article id="rooms_list" class="list">
+          <div id="rooms"></div>
+        </article>
+        <article id="beds_list" class="list">
+          <div id="beds"></div>
+        </article>
+        <div id="consulta" class="consulta"></div>
+      </lists>
+    </form>
+  </div>
+  <!-- Templates-->
+  <!-- Received data -->
+	<script type="text/template" id="data-results">
+		{% autoescape false %}
+			[[area]]
+		{% endautoescape %}
+	</script>
+
+  <script type="text/template" id="tmpl-areas">
+    <select id="area" name="area" form="callform" size="11" class="select_menu"></select>
+  </script>
+
+  <script type="text/template" id="tmpl-rooms">
+    <select id="room" name="room" form="callform" size="11" class="select_menu"></select>
+  </script>
+
+  <script type="text/template" id="tmpl-beds">
+    <select id="bed" name="bed" form="callform" size="11" class="select_menu"></select>
+  </script>
+
+  <script type="text/template" id="tmpl-consult">
+    <button type="submit" class="btn btn-primary btn-details">Consultar</button>
+  </script>
+{% endblock %}

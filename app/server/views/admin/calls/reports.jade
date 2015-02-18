@@ -1,0 +1,71 @@
+//extends ../../../layouts/admin
+
+block head
+  title Calls Details
+
+block neck
+  link(rel='stylesheet', href='/vendor/bootstrap3-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+  link(rel='stylesheet', href='/views/admin/calls/less/reports.min.css')
+
+
+block feet
+  script(src='/vendor/bootstrap3-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
+  script(src='/views/admin/calls/js/reports.min.js')
+
+block body
+  div.page-header
+    h1 Calls details
+
+  div.row
+    section.col-sm-12.main_content.small.medium.large
+      nav.menu
+        ul.list.center_block.wrap
+          li.item
+            a(href='#') Llamados
+          li.item
+            a(href='#') Alarmas
+      div.report
+        div.tag
+          span Hospital Demo
+        div.tag
+          span Agregar
+
+        div.row
+          div.center-block
+            form(id="date_form" name="date_form" action="/admin/calls/excel/" + "Agregar" method="POST")
+              div.col-sm-12.col-centered(style='height:60px;')
+                div.col-centered
+                  div.input-group.date#initDate
+                    input.form-control(type='text', id="init_date" name="init_date")
+                    span.input-group-addon.input-nx
+                      span.glyphicon.glyphicon-calendar
+
+                div.col-centered
+                  div.input-group.date#endDate
+                    input.form-control(type='text', id="end_date" name="end_date")
+                    span.input-group-addon.input-nx
+                      span.glyphicon.glyphicon-calendar
+
+                div.col-centered
+                  button.btn.btn-primary(type='button', id="gen_report") Generar Reporte
+
+        div.board_report
+          div.report_day
+            h3 Resumen General
+          div.report_data
+            ul.lists
+              li.item.border-bottom
+                span
+                  | Agregar Llamados solicitados
+              li.item.border-bottom
+                span
+                  | Agregar Llamados atendidos
+              li.item.border-bottom
+                span
+                  | Agregar Min Tiempo Promedio
+              li.item.border-bottom
+                span
+                  | Agregar Tiempo Maximo
+              li.item.border-bottom
+                span
+                  | Agregar Tiempo Minimo

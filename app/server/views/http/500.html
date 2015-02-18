@@ -1,0 +1,12 @@
+{% extends '../layouts/default.html' %}
+
+{% block title %} Error en el servidor {% endblock %}
+
+{% block content %}
+  <h1> Error en el servidor </h1>
+  <p class="lead">Hay un error en el servidor</p>
+
+  {% if err.stack %}
+    <pre> [[err.stack]] </pre>
+  {% endif %}
+{% endblock %}

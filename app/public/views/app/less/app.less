@@ -1,0 +1,297 @@
+@import "normalize.less";
+@import "fonts.less";
+
+audio {
+    margin:0;
+}
+body {
+    color:#000;
+    font-family:"helvetica_custom";
+    font-size:16px;
+    text-align:left;
+}
+html,body {
+    height:100%;
+    overflow:hidden;
+}
+div.red_code {
+    color:#f00;
+}
+div.blue_code {
+    color:#009cde;
+}
+div.orange_code {
+    color:#e96615;
+}
+figure {
+    margin:0;
+}
+footer {
+    background:#bdbfc1 url("../images/footer_base.png") no-repeat;
+    height:13%;
+    width:85%;
+    h2 {
+        text-align:center;
+    }
+}
+header {
+    color:#ddd;
+    margin:0;
+    padding-top:1em;
+    height:23%;
+    #header {
+        font-size:0;
+        height:82px;
+        img {
+            width:100%;
+        }
+        #logo_clinica {
+            height:82px;
+            width: 215px;
+            right:5rem;
+            position:relative;
+            text-align:left;
+        }
+        #logo_nurse {
+            height:82px;
+            left:5.15rem;
+            position:relative;
+            width:82px;
+        }
+        #logo_netux {
+            height:82px;
+            left:4rem;
+            position:relative;
+            text-align:left;
+        }
+    }
+    #subheader {
+        font-size:0;
+        padding:10px;
+        .state {
+            width:29%;
+        }
+        .description {
+            width:49%;
+        }
+        .time {
+            width:16%;
+        }
+    }
+}
+header #header #logo_netux,header #header #logo_clinica,header #header #logo_nurse,header #header #audios {
+    display:inline-block;
+    margin:0;
+    vertical-align:middle;
+    text-align:left;
+}
+header #header #audios,header #header #player {
+    width:43%;
+    visibility:hidden;
+}
+header #subheader .description,header #subheader .state,header #subheader .time {
+    background:#009cde;
+    border-radius:10px;
+    color:#fff;
+    display:inline-block;
+    font-size:51px;
+    font-weight:900;
+    letter-spacing:5px;
+    margin-right:10px;
+    padding-top:8px;
+    position:relative;
+    right:16px;
+    vertical-align:middle;
+}
+ul {
+    list-style-type:none;
+    padding:0;
+    margin:0;
+}
+ul.warnings {
+    padding:0;
+    margin:0;
+    list-style:none;
+    line-height:1;
+    position:relative;
+    width:100%;
+    max-width:100%;
+    height:35px;
+    max-height:19px;
+    overflow:hidden;
+    padding-top:14px;
+    span {
+        padding-top:2px;
+        vertical-align:middle;
+        color:#f75207;
+        padding:.5em;
+    }
+    li {
+        position:absolute;
+        top:-999em;
+        left:500px;
+        display:inline;
+        white-space:nowrap;
+        text-align:center;
+        padding-left:42%;
+        padding-top:8px;
+    }
+}
+#container {
+    height:100%;
+    background:#dadbed;
+    border-radius:30px;
+    text-align:center;
+    background:#fff;
+    background:-moz-radial-gradient(center,ellipse cover,#fff 61%,#ededed 84%);
+    background:-webkit-gradient(radial,center center,0,center center,100%,color-stop(61%,#fff),color-stop(84%,#ededed));
+    background:-webkit-radial-gradient(center,ellipse cover,#fff 61%,#ededed 84%);
+    background:-o-radial-gradient(center,ellipse cover,#fff 61%,#ededed 84%);
+    background:-ms-radial-gradient(center,ellipse cover,#fff 61%,#ededed 84%);
+    background:radial-gradient(ellipse at center,#fff 61%,#ededed 84%);
+}
+#content {
+    height:50%;
+    display:inline-block;
+    margin:0;
+    width:100%;
+}
+#turns_queue {
+    height:calc(100% - 2.5em);
+    width:94%;
+    max-height:550px;
+    overflow:hidden;
+    margin-left:3%;
+}
+#details_column {
+    height:100%;
+    width:100%;
+    background-color:transparent;
+    text-align:center;
+    li {
+        font-size:30px;
+        margin-bottom:0;
+        letter-spacing:4px;
+    }
+}
+#current_turn {
+    height:100%;
+    width:100%;
+}
+#datas {
+    height:100%;
+    width:100%;
+}
+#report_ad {
+    background-color:#000;
+    padding:.5em;
+    position:absolute;
+    bottom:.5em;
+    left:.5em;
+    right:.5em;
+    margin:0 !important;
+}
+.bold {
+    font-weight:bold;
+}
+.content_table {
+    table {
+        width:100%;
+        border-collapse:separate !important;
+        th {
+            padding-bottom:10px;
+        }
+        td {
+            padding-top:10px;
+        }
+        td:first-child {
+            border-top-left-radius:10px;
+            border-bottom-left-radius:10px;
+        }
+        tr.alt {
+            -moz-background-clip:padding-box;
+            background:transparent;
+            background-color:#d7effb;
+            border-radius:10px;
+        }
+    }
+}
+.content_table table tr:last-child,.content_table table td:last-child {
+    border-bottom-right-radius:10px;
+    border-top-right-radius:10px;
+    border-bottom-right-radius:10px;
+}
+.featured {
+    background-color:#009cde;
+    border-radius:1em;
+    height:13%;
+    padding-bottom:.5em;
+    padding-top:1em;
+    width:100%;
+    height:19%;
+    h2 {
+        color:#fff;
+        font-size:35px;
+        font-weight:bold;
+        letter-spacing:7px;
+        margin:0;
+        text-align:center;
+    }
+}
+.turns {
+    background-color:transparent;
+    color:#fff;
+    height:100%;
+    padding-top:8px;
+    width:100%;
+}
+.turn {
+    height:40px;
+    width:1010px;
+    background-color:transparent;
+    div {
+        display:inline-block;
+        text-align:center;
+        vertical-align:middle;
+        padding-top:10px;
+        background-color:#fff;
+    }
+}
+.code_turn {
+    font-size:47px;
+    font-weight:bold;
+    letter-spacing:2px;
+    text-align:left;
+    vertical-align:middle;
+    width:321px;
+}
+.description_turn {
+    font-size:49px;
+    font-weight:bold;
+    letter-spacing:2px;
+    padding-left:36px;
+    width:553px;
+    span {
+        padding:.2em;
+    }
+    div {
+        text-align:center;
+        vertical-align:middle;
+    }
+}
+.description_center {
+    div {
+        text-align:center;
+        vertical-align:middle;
+        padding-right:58px;
+    }
+}
+.left {
+    margin-left:34px;
+}
+.time_turn {
+    width:206px;
+    font-size:49px;
+    font-weight:bold;
+    letter-spacing:2px;
+}

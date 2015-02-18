@@ -1,0 +1,96 @@
+{% extends '../../layouts/main.html' %}
+
+{% block title %} Camas / Detalles {% endblock %}
+
+{% block feet %}
+	<!-- external scripts -->
+	<script type="text/javascript" src="/views/admin/beds/js/details.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="header"></div>
+			<div id="details"></div>
+			<div id="delete"></div>
+		</div>
+	</div>
+
+	<script type="text/template" id="tmpl-header">
+		<div class="page-header">
+			<h1>
+				<a href="/admin/beds/">Camas</a> / <%= name %>
+			</h1>
+		</div>
+	</script>
+
+	<script type="text/template" id="tmpl-details">
+		<!-- form Update -->
+		<fieldset>
+			<legend>Detalles</legend>
+			<!-- alerts -->
+			<div class="alerts">
+				<% _.each(errors, function(err) { %>
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" data-dismiss="alert" class="close">&times;</button>
+							<%- err %>
+					</div>
+				<% }); %>
+				<% if (success) { %>
+					<div class="alert alert-info alert-dismissable">
+						<button type="button" data-dismiss="alert" class="close">&times;</button>
+							Los cambios han sido guardados.
+					</div>
+				<% } %>
+			</div>
+			<!-- main form -->
+			<div class!="form-group <%- errfor.name ? "has-error" : "" %>">
+				<label>Nombre:</label>
+				<input type="text" name="name" value!="<%- name %>" class="form-control">
+				<span class="help-block"><%- errfor.name %></span>
+			</div>
+			<div class!="form-group <%- errfor.area ? "has-error" : "" %>">
+				<label>Área:</label>
+				<select id="area" name="area" class="form-control"></select>
+				<span class="help-block"><%- errfor.name %></span>
+			</div>
+			<div class!="form-group <%- errfor.room ? "has-error" : "" %>">
+				<label>Habitación:</label>
+				<select id="room" name="room" class="form-control"></select>
+				<span class="help-block"><%- errfor.room %></span>
+			</div>
+			<!-- button update -->
+			<div class="form-group">
+				<button type="button" class="btn btn-primary btn-update">Actualizar</button>
+			</div>
+		</fieldset>
+	</script>
+
+	<script type="text/template" id="tmpl-delete">
+		<fieldset>
+			<legend>Zona Peligrosa</legend>
+				<div class="alerts">
+					<% _.each(errors, function(err) { %>
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" data-dismiss="alert" class="close">&times;</button>
+								<%- err %></div>
+					<% }); %>
+				</div>
+				<div class="form-group">
+					<span class="help-block"><span class="label label-danger">No se puede deshacer.</span>&nbsp;</span>
+				</div>
+				<div class="form-group">
+						<button type="button" class="btn btn-danger btn-delete">Borrar</button>
+				</div>
+		</fieldset>
+	</script>
+
+	<!-- Received data -->
+	<script type="text/template" id="data-results">
+		{% autoescape false %}
+			[[data.bed]]
+		{% endautoescape %}
+	</script>
+
+{% endblock %}
